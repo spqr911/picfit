@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "picfit.api", "picfit.api\picfit.api.csproj", "{EA2265FE-D38C-44F1-96B1-D75B3FC86543}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "picfit.application", "picfit.application\picfit.application.csproj", "{083085A0-0632-4273-8ADC-EA65565F7498}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "picfit.infrastructure", "picfit.infrastructure\picfit.infrastructure.csproj", "{5EDBE5B7-8E8E-42FB-815C-1B244985F349}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "picfit.test.load.performance", "picfit.test.load.performance\picfit.test.load.performance.csproj", "{0AB0A60F-FEEF-4237-BAA7-7D5D2957D2E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA2265FE-D38C-44F1-96B1-D75B3FC86543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2265FE-D38C-44F1-96B1-D75B3FC86543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2265FE-D38C-44F1-96B1-D75B3FC86543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2265FE-D38C-44F1-96B1-D75B3FC86543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{083085A0-0632-4273-8ADC-EA65565F7498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{083085A0-0632-4273-8ADC-EA65565F7498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{083085A0-0632-4273-8ADC-EA65565F7498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{083085A0-0632-4273-8ADC-EA65565F7498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EDBE5B7-8E8E-42FB-815C-1B244985F349}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EDBE5B7-8E8E-42FB-815C-1B244985F349}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EDBE5B7-8E8E-42FB-815C-1B244985F349}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EDBE5B7-8E8E-42FB-815C-1B244985F349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB0A60F-FEEF-4237-BAA7-7D5D2957D2E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB0A60F-FEEF-4237-BAA7-7D5D2957D2E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB0A60F-FEEF-4237-BAA7-7D5D2957D2E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB0A60F-FEEF-4237-BAA7-7D5D2957D2E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {522A7564-46D7-41C2-B32F-447341583A6F}
+	EndGlobalSection
+EndGlobal
