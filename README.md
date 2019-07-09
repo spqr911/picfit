@@ -46,10 +46,11 @@ To configure application, you should change `appsettings.json`
 `storage` can be:
 
 * type:fs - generated images stored in your File system
-* type:s3 - generated images stored in Amazon S3
+* type:s3 - generated images stored in Amazon S3 (*in the future*)
 * type:... - you can write custom implementation
+* location - folder location for `fs` type
 
-`imagepreprocessing`
+`imagepreprocessing` can be:
 
 * `type:imagesharp` - use [SixLabors/ImageSharp](https://github.com/SixLabors/ImageSharp) library to rescale images 
 * `type:...` - you can write custom implementation
