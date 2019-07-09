@@ -28,11 +28,11 @@ To configure application, you should change `appsettings.json`
 ```
 {
   "storage": {
-    "type": "fs", // fs
-    "location": "D:\\git\\picfit\\_static" // path/to/directory
+    "type": "fs",
+    "location": "D:\\git\\picfit\\_static"
   },
   "imagepreprocessing": {
-    "type": "imagesharp", // imagesharp
+    "type": "imagesharp",
     "scales": [
       75,
       100,
