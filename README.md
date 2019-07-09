@@ -7,5 +7,5 @@ Picfit will supports multiple storage backends and multiple processing implement
 
 I could not come up with a good name for this application so I used picfit from : https://github.com/thoas/picfit
 
-#Installation
+# Installation
 
