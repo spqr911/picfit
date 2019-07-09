@@ -9,3 +9,8 @@ I could not come up with a good name for this application so I used *picfit*  fr
 
 # Installation
 
+1. Download and install .net core 2.2, git
+2. Download it:
+``` git clone https://github.com/spqr911/picfit.git ```
+3. Run it:
+```dotnet build```
