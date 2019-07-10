@@ -90,6 +90,11 @@ namespace picfit.api.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete image
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         [HttpDelete("{key}")]
         [ProducesResponseType(typeof(DeleteImageCommandResult), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
