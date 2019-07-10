@@ -30,4 +30,10 @@
     <ProjectReference Include="..\picfit.infrastructure\picfit.infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="picfit.api.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
