@@ -58,6 +58,11 @@ namespace picfit.api.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
         [HttpPut]
         [ProducesResponseType(typeof(AddImageCommandResult), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
