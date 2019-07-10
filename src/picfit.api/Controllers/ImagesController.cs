@@ -27,7 +27,11 @@ namespace picfit.api.Controllers
             _logger = logger;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(AddImageCommandResult), (int)HttpStatusCode.Created)]
         [ProducesResponseType(typeof(AddImageCommandResult), (int)HttpStatusCode.Conflict)]
