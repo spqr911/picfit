@@ -59,7 +59,7 @@ namespace picfit.api.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Update image
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
