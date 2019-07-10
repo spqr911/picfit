@@ -28,7 +28,7 @@ namespace picfit.api.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Add image
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
