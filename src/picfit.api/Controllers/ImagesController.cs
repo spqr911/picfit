@@ -1,17 +1,16 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using picfit.application.Commands;
-using System.Threading.Tasks;
 using picfit.application.Extensions;
 using picfit.application.Queries;
-using Microsoft.AspNetCore.StaticFiles;
 using System;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace picfit.api.Controllers
 {
@@ -40,15 +39,21 @@ namespace picfit.api.Controllers
         {
             try
             {
-                var command = new AddImageCommand(
+                AddImageCommand command = new AddImageCommand(
                     image.OpenReadStream().ConvertToByteArray(),
                     image.FileName);
 
-                var result = await Mediator.Send(command);
+                AddImageCommandResult result = await Mediator.Send(command);
                 if (result == null)
+                {
                     return StatusCode(500);
+                }
+
                 if (result.Scaled == null || !result.Scaled.Any())
+                {
                     return Conflict(result);
+                }
+
                 return Created($"{result.Key}/{result.Scaled}", result);
             }
             catch (Exception ex)
@@ -71,16 +76,22 @@ namespace picfit.api.Controllers
         {
             try
             {
-                var command = new AddImageCommand(
+                AddImageCommand command = new AddImageCommand(
                     image.OpenReadStream().ConvertToByteArray(),
                     image.FileName,
                     true);
 
-                var result = await Mediator.Send(command);
+                AddImageCommandResult result = await Mediator.Send(command);
                 if (result == null)
+                {
                     return StatusCode(500);
+                }
+
                 if (result.Scaled == null || !result.Scaled.Any())
+                {
                     return NotFound();
+                }
+
                 return Created($"{result.Key}/{result.Scaled}", result);
             }
             catch (Exception ex)
@@ -103,15 +114,21 @@ namespace picfit.api.Controllers
         {
             try
             {
-                var command = new DeleteImageCommand(key);
-                var result = await Mediator.Send(command);
+                DeleteImageCommand command = new DeleteImageCommand(key);
+                DeleteImageCommandResult result = await Mediator.Send(command);
                 if (result == null)
+                {
                     return StatusCode(500);
-                if (result.Deleted == null || !result.Deleted.Any())
-                    return NotFound();
-                else
-                    return Ok(result);
+                }
 
+                if (result.Deleted == null || !result.Deleted.Any())
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(result);
+                }
             }
             catch (Exception ex)
             {
@@ -123,17 +140,16 @@ namespace picfit.api.Controllers
 
         [HttpGet("{key}")]
         public async Task<IActionResult> Get(
-            [FromRoute] string key, 
-            [FromQuery] int width, 
+            [FromRoute] string key,
+            [FromQuery] int width,
             [FromQuery] int height,
             [FromQuery] string extension)
         {
             try
             {
 
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, string.Empty);
                 return StatusCode(500);
@@ -143,16 +159,19 @@ namespace picfit.api.Controllers
         [HttpGet("{key}/{name}")]
         [ProducesResponseType(typeof(FileResult), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]        
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Get([FromRoute] string key, [FromRoute] string name)
         {
             try
             {
                 new FileExtensionContentTypeProvider().TryGetContentType(name, out string contentType);
-                var query = new GetScaledImageQuery(key, name);
-                var result = await Mediator.Send(query);
+                GetScaledImageQuery query = new GetScaledImageQuery(key, name);
+                GetImageViewModel result = await Mediator.Send(query);
                 if (result == null)
+                {
                     return NotFound();
+                }
+
                 return File(result.Data, contentType, true);
             }
             catch (Exception ex)
