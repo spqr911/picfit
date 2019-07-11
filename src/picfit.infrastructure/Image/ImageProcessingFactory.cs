@@ -8,12 +8,12 @@ using System.Text;
 
 namespace picfit.infrastructure.Image
 {
-    public class ImagePreProcessingFactory : IImagePreProcessingFactory
+    public class ImagePreProcessingFactory : IImageProcessingFactory
     {
-        private readonly ImagePreProcessingConfig _config;
+        private readonly ImageProcessingConfig _config;
         private readonly ILoggerFactory _loggerFactory;
 
-        public ImagePreProcessingFactory(IOptions<ImagePreProcessingConfig> config, ILoggerFactory loggerFactory)
+        public ImagePreProcessingFactory(IOptions<ImageProcessingConfig> config, ILoggerFactory loggerFactory)
         {
             _config = config.Value;
             _loggerFactory = loggerFactory;
@@ -23,9 +23,9 @@ namespace picfit.infrastructure.Image
         {
             IImagePreProcessingService imagePreProcessing;
             if (_config.Type == "imagesharp")
-                imagePreProcessing = new ImageSharpPreProcessingService(
+                imagePreProcessing = new ImageSharpProcessingService(
                     _config.Scales,
-                    _loggerFactory.CreateLogger<ImageSharpPreProcessingService>());
+                    _loggerFactory.CreateLogger<ImageSharpProcessingService>());
             else
                 throw new ArgumentException("indefined imagepreprocessing type");
             return imagePreProcessing;

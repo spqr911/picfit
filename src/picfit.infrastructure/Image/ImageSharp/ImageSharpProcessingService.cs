@@ -12,13 +12,13 @@ using Microsoft.Extensions.Logging;
 
 namespace picfit.infrastructure.Image.ImageSharp
 {
-    public class ImageSharpPreProcessingService : IImagePreProcessingService
+    public class ImageSharpProcessingService : IImageProcessingService
     {
         //private readonly ImagePreProcessingServiceConfig _config;
         private readonly ushort[] _scales = new ushort[] { 75, 100, 150, 200 };
         private readonly ILogger _logger;
         
-        public ImageSharpPreProcessingService(ushort[] scales, ILogger<ImageSharpPreProcessingService> logger)
+        public ImageSharpProcessingService(ushort[] scales, ILogger<ImageSharpProcessingService> logger)
         {
             _scales = scales;
             _logger = logger;
@@ -44,14 +44,14 @@ namespace picfit.infrastructure.Image.ImageSharp
                                 Math.Round(
                                     image.Height * scale / 100.0, MidpointRounding.AwayFromZero))
                                 ));
-                        var scaledData = GetScaledData(image, extension);
+                        var scaledData = _getData(image, extension);
                         yield return new Image(scale, scaledData);
                     }
                 }
             }
         }
 
-        private byte[] GetScaledData(Image<Rgba32> image, string extension)
+        private byte[] _getData(Image<Rgba32> image, string extension)
         {
             using (MemoryStream stream = new MemoryStream())
             {
@@ -72,6 +72,16 @@ namespace picfit.infrastructure.Image.ImageSharp
                         break;
                 }
                 return stream.ToArray();
+            }
+        }
+
+        public byte[] Mutate(byte[] data, int width, int height, string extension)
+        {
+            using (Image<Rgba32> image = SixLabors.ImageSharp.Image.Load(data))
+            {
+                image.Mutate(
+                    x => x.Resize(width, height));
+                return _getData(image, extension);
             }
         }
     }

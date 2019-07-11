@@ -70,7 +70,7 @@ namespace picfit.api
         {
             services.Configure<ImagePreProcessingConfig>(
                 configuration.GetSection("imagepreprocessing"));
-            services.AddScoped<IImagePreProcessingFactory, ImagePreProcessingFactory>();
+            services.AddScoped<IImageProcessingFactory, ImagePreProcessingFactory>();
             return services;
         }
         public static IServiceCollection AddCustomStorageService(this IServiceCollection services, IConfiguration configuration)

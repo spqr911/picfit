@@ -120,6 +120,26 @@ namespace picfit.api.Controllers
             }
         }
 
+
+        [HttpGet("{key}")]
+        public async Task<IActionResult> Get(
+            [FromRoute] string key, 
+            [FromQuery] int width, 
+            [FromQuery] int height,
+            [FromQuery] string extension)
+        {
+            try
+            {
+
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500);
+            }
+        }
+
         [HttpGet("{key}/{name}")]
         [ProducesResponseType(typeof(FileResult), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -129,7 +149,7 @@ namespace picfit.api.Controllers
             try
             {
                 new FileExtensionContentTypeProvider().TryGetContentType(name, out string contentType);
-                var query = new GetImageQuery(key, name);
+                var query = new GetScaledImageQuery(key, name);
                 var result = await Mediator.Send(query);
                 if (result == null)
                     return NotFound();

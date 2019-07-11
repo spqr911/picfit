@@ -14,17 +14,17 @@ namespace picfit.application.Commands
 {
     public class AddImageCommandHandler : IRequestHandler<AddImageCommand, AddImageCommandResult>
     {
-        private readonly IImagePreProcessingFactory _imagePreProcessingFactory;
+        private readonly IImageProcessingFactory _imageProcessingFactory;
         private readonly IStorageFactory _storageFactory;
         private readonly ILogger _logger;
         private readonly Regex _regex = new Regex(@"(?<name>[^\\]*)\.(?<extension>(\w+)$)", RegexOptions.Compiled);
         public AddImageCommandHandler(
-            IImagePreProcessingFactory imagePreProcessingFactory,
+            IImageProcessingFactory imageProcessingFactory,
             IStorageFactory storageFactory,
             ILogger<AddImageCommandHandler> logger
             )
         {
-            _imagePreProcessingFactory = imagePreProcessingFactory;
+            _imageProcessingFactory = imageProcessingFactory;
             _storageFactory = storageFactory;
             _logger = logger;
         }
@@ -38,8 +38,8 @@ namespace picfit.application.Commands
                 var name = match.Result("${name}");
                 var extension = match.Result("${extension}");
                 var storage = _storageFactory.CreateStorage();
-                var imagePreProcessing = _imagePreProcessingFactory.CreateImagePreProcessing();
-                foreach (var scaledImage in imagePreProcessing.GetScaledImages(request.Data, extension))
+                var imageProcessing = _imageProcessingFactory.CreateImageProcessing();
+                foreach (var scaledImage in imageProcessing.GetScaledImages(request.Data, extension))
                 {
                     var storageResult = false;
                     if(!request.RewriteMode)

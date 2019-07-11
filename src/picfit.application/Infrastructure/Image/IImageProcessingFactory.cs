@@ -4,8 +4,8 @@ using System.Text;
 
 namespace picfit.application.Infrastructure.Image
 {
-    public interface IImagePreProcessingFactory
+    public interface IImageProcessingFactory
     {
-        IImagePreProcessingService CreateImagePreProcessing();
+        IImageProcessingService CreateImageProcessing();
     }
 }
